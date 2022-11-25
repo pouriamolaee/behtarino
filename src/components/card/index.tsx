@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderRadius: "2rem",
     maxWidth: ({ maxWidth }: StyleProps) =>
       maxWidth ? theme.breakpoints.values[maxWidth] : 0,
-    width: ({ width }: StyleProps) => width,
+    width: ({ width }: StyleProps) => width, 
   },
 }));
 
@@ -31,9 +31,9 @@ const Card = ({
   ...props
 }: Props & StyleProps & PaperProps) => {
   const handleWidth = () => {
-    if (fullWidth) return "100%";
-    else if (width) return width;
-    else return "auto";
+    if (fullWidth) return "100%"; 
+    else if (width) return width; 
+    else return "auto"; 
   };
 
   const classes = useStyles({ width: handleWidth(), maxWidth });

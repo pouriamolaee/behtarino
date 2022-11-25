@@ -5,8 +5,9 @@ import { useState } from "react";
 import Head from "next/head";
 import Stack from "@mui/material/Stack";
 import Grid from "@mui/material/Grid";
-import Card from "../../../src/components/card";
 import Box from "@mui/material/Box";
+import Card from "../../../src/components/card";
+import Rating from "../../../src/components/rating";
 import { makeStyles } from "@mui/styles";
 
 interface StyleProps {
@@ -19,16 +20,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: "100vw",
     minHeight: "100vh",
   },
-  sectionsWrapper: {
-    width: "100%",
-    height: "100%",
-  },
   productShowcase: {
-    height: "100%",
     backgroundColor: ({ productColor }: StyleProps) => productColor,
-  },
-  productDetails: {
-    height: "100%",
   },
 }));
 
@@ -39,6 +32,7 @@ interface Props {
 export default function Product({ product }: Props) {
   const [productColor, setProductColor] = useState("red");
   const classes = useStyles({ productColor });
+
 
   return (
     <>
@@ -54,9 +48,13 @@ export default function Product({ product }: Props) {
         justifyContent="center"
       >
         <Card fullWidth maxWidth="md" elevation={24}>
-          <Grid className={classes.sectionsWrapper} container>
-            <Grid item md={4} className={classes.productShowcase}></Grid>
-            <Grid item md={8} className={classes.productDetails}></Grid>
+          <Grid container>
+            <Grid item md={4} className={classes.productShowcase}>
+              X
+            </Grid>
+            <Grid item md={8}>
+              <Rating precision={0.1} readOnly value={product.rating.rate} />
+            </Grid>
           </Grid>
         </Card>
       </Stack>
