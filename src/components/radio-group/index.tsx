@@ -13,24 +13,29 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 interface Props {
+  radiosCount?: number;
   activeId: number;
   setActiveId: (activeId: number) => void;
   handleColor: (radioId: number) => string;
 }
 
 export default function RadioGroup({
+  radiosCount = 5,
   activeId,
   setActiveId,
   handleColor,
 }: Props) {
   const classes = useStyles();
-  const radioIds = new Array(5).fill(undefined).map((val, idx) => ++idx);
+  const radioIds = new Array(radiosCount)
+    .fill(undefined)
+    .map((_, idx) => ++idx);
 
   return (
     <Stack direction="row" alignItems="center" spacing={2}>
       {radioIds.map((radioId) => (
         <ButtonBase
           key={radioId}
+          onClick={setActiveId.bind(null, radioId)}
           classes={classes}
           sx={{
             backgroundColor: handleColor(radioId),
@@ -39,7 +44,6 @@ export default function RadioGroup({
                 ? `1px solid ${handleColor(radioId)}`
                 : "none",
           }}
-          onClick={setActiveId.bind(null, radioId)}
         />
       ))}
     </Stack>

@@ -4,7 +4,7 @@ import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    color: theme.palette.primary.main, 
+    color: theme.palette.primary.main,
   },
 }));
 

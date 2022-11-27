@@ -16,17 +16,18 @@ const useStyles = makeStyles((theme: Theme) => ({
   root: {
     overflow: "hidden",
     borderRadius: ({ borderRadius }: StyleProps) => borderRadius,
-    width: ({ width }: StyleProps) => width,
+    width: ({ width }: StyleProps) => width, 
     maxWidth: ({ maxWidth }: StyleProps) =>
       maxWidth ? theme.breakpoints.values[maxWidth] : "none",
     height: ({ height }: StyleProps) => height,
-    minHeight: ({ minHeight }: StyleProps) => minHeight,     
+    minHeight: ({ minHeight }: StyleProps) => minHeight,
   },
 }));
 
-interface Props {
-  children: ReactElement;
-}
+type Props = PaperProps &
+  StyleProps & {
+    children: ReactElement;
+  };
 
 export default function Card({
   children,
@@ -37,7 +38,7 @@ export default function Card({
   height,
   minHeight,
   ...props
-}: Props & StyleProps & PaperProps) {
+}: Props) {
   const classes = useStyles({
     width: handleWidth(),
     maxWidth,
@@ -58,5 +59,3 @@ export default function Card({
     </Paper>
   );
 }
-
-Card;
