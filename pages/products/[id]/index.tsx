@@ -86,8 +86,13 @@ export default function Product({ product }: Props) {
               minHeight="5rem"
               sx={{ backgroundColor: handleProductColor(activeColorId) }}
             />
-
-            <Grid item xs={12} sm={8} px={6} py={8}>
+            <Grid
+              item
+              xs={12}
+              sm={8}
+              px={idDownSm ? 3 : 6}
+              py={idDownSm ? 4 : 8}
+            >
               <Stack
                 direction="row"
                 justifyContent="space-between"
