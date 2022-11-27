@@ -7,15 +7,20 @@ interface StyleProps {
   maxWidth?: "xs" | "sm" | "md" | "lg" | "xl";
   fullWidth?: boolean;
   width?: number | string;
+  borderRadius?: string | number;
+  height?: number | string;
+  minHeight?: number | string;
 }
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     overflow: "hidden",
-    borderRadius: "2rem",
+    borderRadius: ({ borderRadius }: StyleProps) => borderRadius,
+    width: ({ width }: StyleProps) => width,
     maxWidth: ({ maxWidth }: StyleProps) =>
-      maxWidth ? theme.breakpoints.values[maxWidth] : 0,
-    width: ({ width }: StyleProps) => width, 
+      maxWidth ? theme.breakpoints.values[maxWidth] : "none",
+    height: ({ height }: StyleProps) => height,
+    minHeight: ({ minHeight }: StyleProps) => minHeight, 
   },
 }));
 
@@ -23,26 +28,35 @@ interface Props {
   children: ReactElement;
 }
 
-const Card = ({
+export default function Card({
   children,
   maxWidth,
   fullWidth,
   width,
+  borderRadius,
+  height,
+  minHeight,
   ...props
-}: Props & StyleProps & PaperProps) => {
-  const handleWidth = () => {
-    if (fullWidth) return "100%"; 
-    else if (width) return width; 
-    else return "auto"; 
-  };
+}: Props & StyleProps & PaperProps) {
+  const classes = useStyles({
+    width: handleWidth(),
+    maxWidth,
+    borderRadius,
+    height,
+    minHeight,
+  });
 
-  const classes = useStyles({ width: handleWidth(), maxWidth });
+  function handleWidth() {
+    if (fullWidth) return "100%";
+    else if (width) return width;
+    else return "auto";
+  }
 
   return (
     <Paper classes={classes} {...props}>
       {children}
     </Paper>
   );
-};
+}
 
-export default Card;
+Card;
