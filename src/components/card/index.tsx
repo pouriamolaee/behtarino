@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     maxWidth: ({ maxWidth }: StyleProps) =>
       maxWidth ? theme.breakpoints.values[maxWidth] : "none",
     height: ({ height }: StyleProps) => height,
-    minHeight: ({ minHeight }: StyleProps) => minHeight,    
+    minHeight: ({ minHeight }: StyleProps) => minHeight,     
   },
 }));
 

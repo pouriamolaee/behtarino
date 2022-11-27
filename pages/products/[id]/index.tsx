@@ -18,13 +18,9 @@ import RadioGroup from "@src/components/radio-group";
 import Button from "@src/components/button";
 import en from "@src/lang/en";
 
-interface StyleProps {
-  productColor: string;
-}
-
 const useStyles = makeStyles((theme: Theme) => ({
   main: {
-    backgroundColor: theme.palette.background.default,
+    backgroundColor: theme.palette.background.default, 
     width: "100vw",
     minHeight: "100vh",
   },
