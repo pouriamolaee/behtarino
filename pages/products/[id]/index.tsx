@@ -59,7 +59,7 @@ export default function Product({ product }: Props) {
   return (
     <>
       <Head>
-        <title>{product?.title}</title>
+        <title>{product?.title || "Behtarino"}</title>
         <meta name="description" content={product?.description} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
